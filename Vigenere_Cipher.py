@@ -1,3 +1,4 @@
+
 print(100*'=')
 print("Blaise Cipher".center(100,'-'))
 print(100*'=')
@@ -15,18 +16,30 @@ if n==1:
     i=0
     j=0
     while i<l:
-        n = ord(str[i])
+        ch = str[i]
+        ch2 = ch.lower()
+        n = ord(ch2)
         m = ord(ky[j])
         ch = str[i]
         n-=97
         m-=97
         sum = m+n
         if sum>=0 and sum<=25:
-            li.append(chr(97+sum))
+            if ch.islower():
+                li.append(chr(97+sum))
+            elif ch.isupper():
+                d = chr(97+sum)
+                d = d.upper()
+                li.append(d)
             j+=1
         elif sum>25 and sum<=50:
             k = sum-26
-            li.append(chr(97+k))
+            if ch.islower():
+                li.append(chr(97+k))
+            elif ch.isupper():
+                d = chr(97+k)
+                d = d.upper()
+                li.append(d)
             j+=1
         else:
             li.append(chr(97+n))
@@ -38,24 +51,35 @@ if n==1:
 elif n==2:
     str = input('Enter text to be decoded:\n')
     ky = input('\nEnter the key:\n')
-    str = str.lower()
     ky = ky.lower()
     l = len(str)
     l2 = len(ky)
     i=0
     j=0
     while i<l:
-            n = ord(str[i])
+            ch = str[i]
+            ch2 = ch.lower()
+            n = ord(ch2)
             m = ord(ky[j])
             n-=97
             m-=97
             sum = n-m
             if sum>=0 and sum<=25:
-                li.append(chr(97+sum))
+                if ch.islower():
+                    li.append(chr(97+sum))
+                elif ch.isupper():
+                    d = chr(97+sum)
+                    d = d.upper()
+                    li.append(d)
                 j+=1
             elif sum>=-25 and sum<0:
                 k = sum+26
-                li.append(chr(97+k))
+                if ch.islower():
+                    li.append(chr(97+k))
+                elif ch.isupper():
+                    d = chr(97+k)
+                    d = d.upper()
+                    li.append(d)
                 j+=1
             else:
                 li.append(chr(n+97))
